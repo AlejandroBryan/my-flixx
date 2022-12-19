@@ -1,28 +1,53 @@
-const express = require('express');
-let fs = require('fs');
-const app = express();
+const express = require('express'),
+      morgan = require('morgan'),
+      fs     = require('fs')
 
-const port = 5000;
 
-app.use(function (req, res, next){
-    let addr = req.url
-    fs.appendFile('log.txt', 'URL: ' + addr + '\nTimestamp: ' + new Date() + '\n\n', (err) => {
-        if (err) {
-          console.log(err);
-          
-        } else {
-          console.log('Added to log.');
-          next()
-        }
-      });
+      const app = express();
+      const port = 5000;
+
+// require your built in module
+ 
+
+    
+
+// invoking middleware 
+
+app.use(morgan('common'));
+app.use(express.static('public'))
+
+app.get('/', (req, res)=> {
+  res.send('<h1>Welcome to to the Movie-Api </h1> <a href="/documentation.html"> Documentation </a>')
+
+})
+app.get('/movies', (req, res)=>{
+  fs.readFile('db.json', 'utf8' , (err, data) => {
+    if (err) {
+      console.error(err);
+      return
+    }
+    const movies = JSON.parse(data)
+   
+    res.status(200)
+       .json({
+        success : true,
+        data    : movies
+    })
+  }); 
+
 })
 
-app.get('/', (req, res)=> res.sendFile(__dirname + '/index.html'))
-app.get('/documentation', (req, res)=> res.sendFile(__dirname + '/documentation.html'))
-app.get('*', (req, res)=> res.sendFile(__dirname + '/404.html'))
+app.use((err, req, res, next) => {
+  const {statusCode = 500 } = err;
+  if (!err.message) err.message = 'Oh No, Something Went Wrong!'
+  console.log(err.message);
+  res.status(statusCode).json({ 
+  success: false,
+  message: err.message
+  
+})
+})
 
 
 
-
-
-app.listen(port, ()=> console.log(`app available on port http://localhost:${port}`))
+app.listen(port, ()=> console.log(`App available on port http://localhost:${port}`))
