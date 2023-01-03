@@ -5,24 +5,97 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Movie-Api - Documentation</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <style>
-        body{
-            text-align: center;
-        }
-       
+      
+        :focus{
 
+           outline:  none;
+
+        } 
     </style>
 </head>
 <body>
-    <h1>Movie-Api Documentation</h1>
 
-    <h3>Get all the available movies</h3>
-    <p>
-        localhost:5000/movies
-    </p>
-    
-</p>
+    <div class="container">
+    <h1 class="my-5">Movie-Api Documentation</h1>
+
+    <p>Some import to keep in mind is that you should specify /api/v1/</p>
+
+    <div class="accordion my-5" id="accordionPanelsStayOpenExample">
+
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+              Get all movies /movies  | <strong>[GET]</strong> 
+            </button>
+          </h2>
+          <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+            <div class="accordion-body">
+              <strong>/movies</strong> Allow you the  to received movies  all the available on our database.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+              Get movies by its id /movies/id  | <strong>[GET]</strong> 
+            </button>
+          </h2>
+          <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
+            <div class="accordion-body">
+              <strong>/movies/id</strong> It will allow you the received a specify movie through id number. Please make sure you are add number for example: <code>/movies/1</code>.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="panelsStayOpen-headingThree">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+              Create a movie /movies | <strong>[POST]</strong> 
+            </button>
+          </h2>
+          <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
+            <div class="accordion-body">
+              <strong>/movies</strong> Make sure are adding all the require field like in the example below.
+              <img class="img-thumbnail" src="exmple.png" alt="documentation example">
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="panelsStayOpen-headingFour">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="false" aria-controls="panelsStayOpen-collapseFour">
+              Update movies by its id /movies/id  | <strong>[PUT]</strong> 
+            </button>
+          </h2>
+          <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingFour">
+            <div class="accordion-body">
+              <strong>/movies/id</strong> It will allow you modified a specify movie through its id number. Please make sure you are add number for example: <code>/movies/1</code>.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="panelsStayOpen-headingFive">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFive" aria-expanded="false" aria-controls="panelsStayOpen-collapseFive">
+              Delete a movie by its id /movies/id  | <strong>[DELETE]</strong> 
+            </button>
+          </h2>
+          <div id="panelsStayOpen-collapseFive" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingFive">
+            <div class="accordion-body">
+              <strong>/movies/id</strong> It will allow you  to delete a specify movie through its id number. Please make sure you are add number for example: <code>/movies/1</code>.
+            </div>
+          </div>
+        </div>
 
 
+
+      </div>
+    </div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 </html>
