@@ -15,15 +15,19 @@ make sure to have already installed the followings programs on your computer Nod
 git clone https://github.com/AlejandroBryan/movie-api.git
 
 
-2- install all dependencies  and devdependencies.
+2- install all dependencies and devdependencies.
 
 npm install 
 
 3- run the application. 
 
-npm start
+npm run dev
 
 the server will start running on port http://localhost:5000
+
+npm run production
+
+this command will create the `\dist` file which our production ready code.
 
 
 
