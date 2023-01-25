@@ -1,0 +1,58 @@
+<% layout('layouts/boilerplate')%>
+<div class="container my-5">
+  <form action="/create" method="POST">
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Collection</label>
+      <input type="text" class="form-control" name="collection" id="exampleInputEmail1" aria-describedby="emailHelp" />
+    </div>
+
+    <div class="mb-3">
+      <label for="description" class="form-label">Description</label>
+      <input type="text" class="form-control" id="description" name="description" aria-describedby="emailHelp" />
+    </div>
+    <hr>
+    <div class="mb-3">
+      <h3>Get</h3>
+      <label for="description" class="form-label">Get method</label>
+      <input type="text" class="form-control" id="description" name="GET[name]" value="GET" aria-describedby="emailHelp" />
+      <label for="description" class="form-label">Description</label>
+      <input type="text" class="form-control" id="description" name="GET[description]" aria-describedby="emailHelp" />
+      <label for="description" class="form-label">URL</label>
+      <input type="text" class="form-control" id="description" name="GET[url]" aria-describedby="emailHelp" />
+    </div>
+    <hr>
+    <div class="mb-3">
+      <label for="description" class="form-label">POST method</label>
+      <input type="text" class="form-control" id="description" name="POST[name]" value="POST" aria-describedby="emailHelp" />
+      <label for="description" class="form-label">Description</label>
+      <input type="text" class="form-control" id="description" name="POST[description]" aria-describedby="emailHelp" />
+      <label for="description" class="form-label">URL</label>
+      <input type="text" class="form-control" id="description" name="POST[url]" aria-describedby="emailHelp" />
+    </div>
+    <hr>
+    <div class="mb-3">
+      <label for="description" class="form-label">PUT method</label>
+      <input type="text" class="form-control" id="description" name="PUT[name]" value="PUT" aria-describedby="emailHelp" />
+      <label for="description" class="form-label">Description</label> 
+      <input type="text" class="form-control" id="description" name="PUT[description]" aria-describedby="emailHelp" />
+      <label for="description" class="form-label">URL</label>
+      <input type="text" class="form-control" id="description" name="PUT[url]" aria-describedby="emailHelp" />
+    </div>
+    <hr>
+
+    <div class="mb-3"> 
+      <label for="description" class="form-label">DELETE method</label>
+      <input type="text" class="form-control" id="description" name="DELETE[name]" value="DELETE" aria-describedby="emailHelp" />
+      <label for="description" class="form-label">Description</label>
+      <input type="text" class="form-control" id="description" name="DELETE[description]" aria-describedby="emailHelp" />
+      <label for="description" class="form-label">URL</label>
+      <input type="text" class="form-control" id="description" name="DELETE[url]" aria-describedby="emailHelp" />
+    </div>
+
+    <div class="mb-3 form-check">
+      <input type="checkbox" class="form-check-input" id="exampleCheck1" />
+      <label class="form-check-label" for="exampleCheck1">Check me out</label>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
