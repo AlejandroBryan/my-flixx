@@ -20,10 +20,10 @@ export const getOneMovieById = async (req, res) => {
 };
 
 export const getOneMovie = async (req, res, next) => {
-  const { Title, Directors } = req.params;
-  const movie = await Movies.find({ $or: [{ Title: Title }, { 'Director.Name': Directors }] });
+  const { Title } = req.params;
+  const movie = await Movies.findOne({ Title: Title });
   if (!movie) {
-    next(new exceptionHandler(404, `There was no movie with ${Title} or ${Directors} found`));
+    next(new exceptionHandler(404, `There was no movie with title: ${Title} found`));
   } else {
     res.status(201).json({
       success: true,

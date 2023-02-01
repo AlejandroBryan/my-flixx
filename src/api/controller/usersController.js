@@ -39,7 +39,12 @@ export const registerUsers = async (req, res, next) => {
       user: users,
     });
   } else {
-    next(new exceptionHandler(400, `Users with email: ${Email} or username: ${UserName} already been registered`));
+    next(
+      new exceptionHandler(
+        400,
+        `Users with email: ${Email} or username: ${UserName} already been registered`,
+      ),
+    );
   }
 };
 
@@ -110,7 +115,9 @@ export const updateUserMovies = async (req, res, next) => {
     FavoriteMovies: MovieId,
   };
   const filterUser = { UserName: Username };
-  let user = await Users.findOneAndUpdate(filterUser, { $push: body }, { new: true }).populate('FavoriteMovies');
+  let user = await Users.findOneAndUpdate(filterUser, { $push: body }, { new: true }).populate(
+    'FavoriteMovies',
+  );
 
   if (user) {
     res.status(201).json({

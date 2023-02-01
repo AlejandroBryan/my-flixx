@@ -30,16 +30,19 @@ app.use(express.static('./public'));
 app.engine('ejs', engine);
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
-
+import auth from './auth';
+auth(app);
+import passport from 'passport';
+import './passport';
 app.get('/', (req, res) => {
   res.send(`<h1>Welcome to My-flix </h1> ${'\n'} <a  href="documentation.html">Documentation</a`);
 });
 
 // invoking api routes
-app.use('/api/v1/movies', moviesRoute);
+app.use('/api/v1/movies', passport.authenticate('jwt', { session: false }), moviesRoute);
 app.use('/api/v1/users', usersRoute);
-app.use('/api/v1/genres', genresRoute);
-app.use('/api/v1/directors', directorsRoute);
+app.use('/api/v1/genres', passport.authenticate('jwt', { session: false }), genresRoute);
+app.use('/api/v1/directors', passport.authenticate('jwt', { session: false }), directorsRoute);
 
 // invoking web routes
 //app.use('/', docuRoute);

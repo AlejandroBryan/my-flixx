@@ -3,6 +3,7 @@ import { asyncErrorHandler } from '../../utils/exceptions/asyncErrorHandler';
 import {
   getAllMovies,
   getOneMovieById,
+  getOneMovieByDirectors,
   getOneMovie,
   createOneMovie,
   updateOneMovie,
@@ -13,7 +14,7 @@ const router = Router();
 
 router.get('/', asyncErrorHandler(getAllMovies));
 router.get('/:Title', asyncErrorHandler(getOneMovie));
-router.get('/:Directors', asyncErrorHandler(getOneMovie));
+router.get('/directors/:Directors', asyncErrorHandler(getOneMovieByDirectors));
 router.get('/:Id', asyncErrorHandler(getOneMovieById));
 router.post('/', asyncErrorHandler(createOneMovie));
 router.put('/:Id', asyncErrorHandler(updateOneMovie));
