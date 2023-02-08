@@ -15,10 +15,9 @@ const generateJWTToken = (user) => {
 export default (router) => {
   router.post('/api/v1/users/login', (req, res) => {
     passport.authenticate('local', { session: false }, (error, user, info) => {
-      console.log(user);
       if (error || !user) {
         return res.status(400).json({
-          message: 'Something is wrong!',
+          message: 'Please check your username and password',
           user: user,
         });
       }

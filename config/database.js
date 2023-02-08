@@ -1,6 +1,9 @@
+if (process.env.NODE_ENV !== 'production') {
+  import('dotenv').then((dotenv) => dotenv.config());
+}
+
 import mongoose from 'mongoose';
-import { config } from 'dotenv';
-config();
+
 mongoose.set('strictQuery', true);
 
 const databaseUrl = process.env.MONGODB_URL || 'mongodb://localhost:27017/my-flixDB';

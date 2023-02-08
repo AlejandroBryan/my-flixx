@@ -9,7 +9,6 @@ passport.use(
       if (error) {
         return callback(error);
       }
-      console.log(user);
 
       if (!user) {
         return callback(null, false, { message: 'Incorrect username.' });
