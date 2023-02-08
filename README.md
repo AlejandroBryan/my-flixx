@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-# movie-api
+
 =======
 # Movie-Api
 
@@ -60,4 +59,3 @@ Reference, code, documentation, etc.
 * [mongo](https://mongodb.com/)
 * [babel](https://babeljs.io/)
 
->>>>>>> 1.7-version
