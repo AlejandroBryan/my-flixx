@@ -13,19 +13,20 @@ export const getAllUsers = async (req, res) => {
 };
 
 export const registerUsers = async (req, res, next) => {
-  const { FirstName, LastName, UserName, Password, Email, Birthday } = req.body;
+  let hashedPassword = await Users.hashPassword(req.body.Password);
+  const { Firstname, Lastname, Username, Email, Birthday } = req.body;
 
-  if (!Email && !UserName && !FirstName && !LastName && !Password && Birthday) {
+  if (!Email && !Username && !Firstname && !Lastname && !Password && Birthday) {
     next(new exceptionHandler(400, `Please enter all required fields`));
   }
 
   const newUser = {
-    FirstName,
-    LastName,
-    UserName,
-    Password,
-    Email,
-    Birthday,
+    Firstname: Firstname,
+    Lastname: Lastname,
+    Username: Username,
+    Password: hashedPassword,
+    Email: Email,
+    Birthday: Birthday,
   };
 
   const user = await Users.findOne({ Email: Email });
@@ -39,12 +40,7 @@ export const registerUsers = async (req, res, next) => {
       user: users,
     });
   } else {
-    next(
-      new exceptionHandler(
-        400,
-        `Users with email: ${Email} or username: ${UserName} already been registered`,
-      ),
-    );
+    next(new exceptionHandler(400, `Users with email: ${Email} or Username: ${Username} already been registered`));
   }
 };
 
@@ -72,7 +68,7 @@ export const getOneUser = async (req, res) => {
 
 export const getOneUserByName = async (req, res, next) => {
   const { Username } = req.params;
-  const user = await Users.findOne({ UserName: Username }).populate([
+  const user = await Users.findOne({ Username: Username }).populate([
     { path: 'FavoriteMovies', strictPopulate: false },
   ]);
   if (user) {
@@ -86,17 +82,17 @@ export const getOneUserByName = async (req, res, next) => {
 };
 
 export const updateOneUser = async (req, res, next) => {
-  const { Username } = req.params;
-  const { FirstName, LastName, UserName, Password, Email, Birthday } = req.body;
+  let userName = req.params.Username;
+  const { Firstname, Lastname, Username, Password, Email, Birthday } = req.body;
   const body = {
-    FirstName,
-    LastName,
-    UserName,
+    Firstname,
+    Lastname,
+    Username,
     Password,
     Email,
     Birthday,
   };
-  const filterUser = { UserName: Username };
+  const filterUser = { Username: userName };
   let user = await Users.findOneAndUpdate(filterUser, body, { new: true });
 
   if (user) {
@@ -114,10 +110,8 @@ export const updateUserMovies = async (req, res, next) => {
   const body = {
     FavoriteMovies: MovieId,
   };
-  const filterUser = { UserName: Username };
-  let user = await Users.findOneAndUpdate(filterUser, { $push: body }, { new: true }).populate(
-    'FavoriteMovies',
-  );
+  const filterUser = { Username: Username };
+  let user = await Users.findOneAndUpdate(filterUser, { $push: body }, { new: true }).populate('FavoriteMovies');
 
   if (user) {
     res.status(201).json({
@@ -133,7 +127,7 @@ export const updateUserMovies = async (req, res, next) => {
 export const deleteUserMovies = async (req, res, next) => {
   const { MovieId, Username } = req.params;
   const body = { FavoriteMovies: MovieId };
-  const filter = { UserName: Username };
+  const filter = { Username: Username };
 
   let user = await Users.findOneAndUpdate(filter, { $pull: body }, { new: true });
 
@@ -149,7 +143,7 @@ export const deleteUserMovies = async (req, res, next) => {
 };
 export const deleteOneUser = async (req, res, next) => {
   const { Username } = req.params;
-  const user = await Users.findOneAndRemove({ UserName: Username });
+  const user = await Users.findOneAndRemove({ Username: Username });
   if (user) {
     res.status(201).json({
       success: true,

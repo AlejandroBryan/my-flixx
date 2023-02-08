@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node dist/index.js",
     "app": "nodemon --exec babel-node ./src/index.js",
-    "production": "babel ./src --out-dir dist --copy-files",
+    "build": "babel ./src --out-dir dist --copy-files",
     "lint": "eslint -c .eslintrc --ext .js src",
     "fix": "eslint --fix --ext .js src/ ",
     "format": "prettier --config .prettierrc --write src/",
@@ -25,10 +25,13 @@
   "author": "Alejandro Bryan",
   "license": "MIT",
   "dependencies": {
+    "bcrypt": "^5.1.0",
     "concurrently": "^7.6.0",
+    "cors": "^2.8.5",
     "ejs": "^3.1.8",
     "ejs-mate": "^4.0.0",
     "express": "^4.18.2",
+    "express-validator": "^6.14.3",
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^6.8.4",
     "passport": "^0.6.0",

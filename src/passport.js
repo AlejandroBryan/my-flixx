@@ -4,30 +4,24 @@ import Users from '../src/models/usersModel';
 import { Strategy, ExtractJwt } from 'passport-jwt';
 
 passport.use(
-  new LocalStrategy(
-    {
-      usernameField: 'Username',
-      passwordField: 'Password',
-    },
-    (username, password, callback) => {
-      //console.log('hello', username + '  ' + password);
-      Users.findOne({ UserName: username }, (error, user) => {
-        //console.log(user);
-        if (error) {
-          console.log(error);
-          return callback(error);
-        }
-        // if the username can't be found
-        if (!user) {
-          //console.log('incorrect username');
-          return callback(null, false, { message: 'Incorrect username.' });
-        }
+  new LocalStrategy({ usernameField: 'Username', passwordField: 'Password' }, (username, password, callback) => {
+    Users.findOne({ UserName: username }, (error, user) => {
+      if (error) {
+        return callback(error);
+      }
+      console.log(user);
 
-        //console.log('finished');
-        return callback(null, user);
-      });
-    },
-  ),
+      if (!user) {
+        return callback(null, false, { message: 'Incorrect username.' });
+      }
+
+      if (!user.validatePassword(password)) {
+        return callback(null, false, { message: 'Incorrect password.' });
+      }
+
+      return callback(null, user);
+    });
+  }),
 );
 
 passport.use(

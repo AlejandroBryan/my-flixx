@@ -33,16 +33,16 @@ export const getOneGenreByName = async (req, res, next) => {
 };
 
 export const createOneGenre = async (req, res, next) => {
-  const newgenre = await req.body;
-  if (!newgenre.Name) {
+  const body = await req.body;
+  if (!body.Name) {
     next(new exceptionHandler(400, `the genre Name field is strong required`));
   } else {
-    newgenre.id = v4;
-    genres.push(newgenre);
+    const genre = new Genres(body);
+    await genre.save();
     res.status(201).json({
       success: true,
-      message: `genre with has been successfully created`,
-      data: newgenre,
+      message: `genre ${body.Name} has been successfully created`,
+      data: genre,
     });
   }
 };

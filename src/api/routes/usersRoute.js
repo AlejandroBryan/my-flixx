@@ -1,6 +1,8 @@
 import { Router } from 'express';
 import passport from 'passport';
+import validate from '../../utils/validations/validator';
 import { asyncErrorHandler } from '../../utils/exceptions/asyncErrorHandler';
+import { userCreateSchema } from '../../schema';
 import {
   getAllUsers,
   registerUsers,
@@ -16,7 +18,7 @@ const router = Router();
 
 router.get('/', passport.authenticate('jwt', { session: false }), asyncErrorHandler(getAllUsers));
 
-router.post('/register', asyncErrorHandler(registerUsers));
+router.post('/register', validate(userCreateSchema), asyncErrorHandler(registerUsers));
 
 router.get('/:Username', passport.authenticate('jwt', { session: false }), asyncErrorHandler(getOneUserByName));
 

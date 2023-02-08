@@ -1,13 +1,12 @@
-if (process.env.NODE_ENV !== 'production') {
-  dotenv.config();
-}
-import dotenv from 'dotenv';
+import { config } from 'dotenv';
 import express from 'express';
 import morgan from 'morgan';
 import path from 'path';
 import mongoose from 'mongoose';
 import ejs from 'ejs';
 import engine from 'ejs-mate';
+import cors from 'cors';
+import { check, validationResult } from 'express-validator';
 import connect_db from '../config/database';
 import exceptionHandler from './utils/exceptions/exceptionHandler';
 import moviesRoute from './api/routes/moviesRoute';
@@ -22,7 +21,22 @@ const app = express();
 connect_db();
 // require your built in module
 
+let allowedOrigins = ['http://localhost:5000', 'http://testsite.com'];
 // invoking middleware
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      if (!origin) return callback(null, true);
+      if (allowedOrigins.indexOf(origin) === -1) {
+        // If a specific origin isn’t found on the list of allowed origins
+        let message = 'The CORS policy for this application doesn’t allow access from origin ' + origin;
+        return callback(new Error(message), false);
+      }
+      return callback(null, true);
+    },
+  }),
+);
+config();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan('common'));
