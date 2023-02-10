@@ -6,11 +6,11 @@
     "npm": "9.x"
   },
   "description": "The development of a movie API.",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "clean": "rm -rf ./dist",
-    "start": "node ./dist/index --omit=dev",
-    "app": "nodemon --exec babel-node ./src/index.js",
+    "clean": "rm -rf ./dist/index.js",
+    "start": "node dist",
+    "app": "nodemon --exec babel-node ./src",
     "build": "npm run clean && babel ./src --out-dir dist --copy-files",
     "lint": "eslint -c .eslintrc --ext .js src",
     "fix": "eslint --fix --ext .js src/ ",
