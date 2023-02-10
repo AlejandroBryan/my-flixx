@@ -1,1 +1,1 @@
-node : web ./dist
+web: npm start

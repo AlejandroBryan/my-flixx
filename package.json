@@ -10,7 +10,7 @@
   "scripts": {
     "clean": "rm -rf ./dist",
     "start": "node ./dist/index --omit=dev",
-    "app": "nodemon --exec babel-node ./src",
+    "app": "nodemon --exec babel-node ./src/index.js",
     "build": "npm run clean && babel ./src --out-dir dist --copy-files",
     "lint": "eslint -c .eslintrc --ext .js src",
     "fix": "eslint --fix --ext .js src/ ",
