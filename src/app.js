@@ -7,6 +7,7 @@ import engine from 'ejs-mate';
 import cors from 'cors';
 import { check, validationResult } from 'express-validator';
 import passport from 'passport';
+
 import './passport';
 import auth from './auth';
 import faviconHandler from './utils/utilities/faviconHandler';
@@ -16,9 +17,9 @@ import moviesRoute from './api/routes/moviesRoute';
 import usersRoute from './api/routes/usersRoute';
 import genresRoute from './api/routes/genresRoute';
 import directorsRoute from './api/routes/directorsRoute';
-
 import docuRoute from './web/routes/docuRoute';
 import corsOptions from './utils/utilities/corsOptions';
+import appErrorHandler from './utils/exceptions/appErrorHandler';
 
 const app = express();
 //connect to the database
@@ -55,16 +56,6 @@ app.all('*', (req, res, next) => {
   next(new exceptionHandler(404, `The url ${req.originalUrl} could't be not found on this server`));
 });
 
-app.use((err, req, res, next) => {
-  const status = err.statusCode || 500;
-  const message = err.message || 'Oh No, Something Went Wrong!';
-  res.status(status).json({
-    success: false,
-    status: status,
-    message: message,
-  });
-  //console.error(err);
-  next();
-});
+app.use(appErrorHandler);
 
 export default app;
