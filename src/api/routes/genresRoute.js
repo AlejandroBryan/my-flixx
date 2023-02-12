@@ -15,7 +15,7 @@ router.get('/', asyncErrorHandler(getAllGenres));
 router.get('/:Name', asyncErrorHandler(getOneGenreByName));
 router.get('/:Id', asyncErrorHandler(getOneGenreById));
 router.post('/', asyncErrorHandler(createOneGenre));
-router.put('/:Id', asyncErrorHandler(updateOneGenre));
+router.put('/:Name', asyncErrorHandler(updateOneGenre));
 router.delete('/:Id', asyncErrorHandler(deleteOneGenre));
 
 export default router;

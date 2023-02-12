@@ -1,8 +1,8 @@
-const jwtSecret = 'your_jwt_secret';
+import 'dotenv/config';
 import jwt from 'jsonwebtoken';
 import passport from 'passport';
 import './passport';
-
+const jwtSecret = process.env.JWT_SECRET;
 const generateJWTToken = (user) => {
   return jwt.sign(user, jwtSecret, {
     subject: user.Username,

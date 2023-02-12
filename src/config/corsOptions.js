@@ -1,4 +1,4 @@
-let allowedOrigins = ['http://localhost:5000', 'http://testsite.com'];
+let allowedOrigins = ['http://localhost:3000', 'http://testsite.com'];
 export default {
   origin: (origin, callback) => {
     if (!origin) return callback(null, true);

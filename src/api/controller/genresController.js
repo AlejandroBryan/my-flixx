@@ -48,17 +48,17 @@ export const createOneGenre = async (req, res, next) => {
 };
 
 export const updateOneGenre = async (req, res, next) => {
-  const id = parseInt(req.params.id);
-  let genre = Genres.find((genre) => genre.id === id);
-
-  if (genre) {
-    genre = req.body;
+  const title = req.params.Title;
+  const body = await req.body;
+  const filterMovie = { Title: title };
+  const movie = await Genres.findOneAndUpdate(filterMovie, body, { new: true });
+  if (!movie) {
+    next(new exceptionHandler(404, `There was no movie with title: ${title} found`));
+  } else {
     res.status(201).json({
       success: true,
-      data: genre,
+      data: movie,
     });
-  } else {
-    next(new exceptionHandler(404, `There was with ${id} found`));
   }
 };
 

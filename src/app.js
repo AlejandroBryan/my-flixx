@@ -1,11 +1,9 @@
 import express from 'express';
 import morgan from 'morgan';
 import path from 'path';
-import mongoose from 'mongoose';
 import ejs from 'ejs';
-import engine from 'ejs-mate';
+import ejsMate from 'ejs-mate';
 import cors from 'cors';
-import { check, validationResult } from 'express-validator';
 import passport from 'passport';
 
 import './passport';
@@ -18,7 +16,7 @@ import usersRoute from './api/routes/usersRoute';
 import genresRoute from './api/routes/genresRoute';
 import directorsRoute from './api/routes/directorsRoute';
 import docuRoute from './web/routes/docuRoute';
-import corsOptions from './utils/utilities/corsOptions';
+import corsOptions from './config/corsOptions';
 import appErrorHandler from './utils/exceptions/appErrorHandler';
 
 const app = express();
@@ -33,10 +31,11 @@ app.use(express.urlencoded({ extended: true }));
 app.use(morgan('common'));
 app.use(faviconHandler);
 app.use(express.static('./public'));
-app.engine('ejs', engine);
+app.engine('ejs', ejsMate);
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
+// Authentication middleware
 auth(app);
 
 app.get('/', (req, res) => {

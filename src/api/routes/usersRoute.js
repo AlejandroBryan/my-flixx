@@ -24,7 +24,12 @@ router.get('/:Username', passport.authenticate('jwt', { session: false }), async
 
 router.get('/:Id', asyncErrorHandler(getOneUserById));
 
-router.put('/:Username', passport.authenticate('jwt', { session: false }), asyncErrorHandler(updateOneUser));
+router.put(
+  '/:Username',
+  validate(userCreateSchema),
+  passport.authenticate('jwt', { session: false }),
+  asyncErrorHandler(updateOneUser),
+);
 
 router.post(
   '/:Username/movies/:MovieId',

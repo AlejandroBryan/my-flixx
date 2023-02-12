@@ -3,10 +3,12 @@ import { Schema, model } from 'mongoose';
 let moviesSchema = new Schema({
   Title: { type: String, required: true, unique: true },
   Description: { type: String, required: true },
-  Genre: [{ type: Schema.Types.ObjectId, ref: 'Genres' }],
+  Genres: [{ type: Schema.Types.ObjectId, ref: 'Genres' }],
   Director: {
     Name: String,
-    Bio: String,
+    Biography: String,
+    Birth: Date,
+    Death: Date,
   },
   Actors: [String],
   ImagePath: String,
