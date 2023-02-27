@@ -53,8 +53,14 @@ This project is licensed under the [MIT] License - see the LICENSE.md file for d
 
 Reference, code, documentation, etc.
 * [nodejs](https://nodejs.org/en/)
+* [nodemon](https://nodemon.io/)
+* [passport](https://www.passportjs.org/) 
+* [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken)
+* [bcryptjs](https://www.npmjs.com/package/bcryptjs)
 * [eslint](https://eslint.org/)
 * [prettier](https://prettier.io/)
 * [mongo](https://mongodb.com/)
+* [mongoose](https://mongoosejs.com/)
 * [babel](https://babeljs.io/)
+
 

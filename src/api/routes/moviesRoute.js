@@ -20,7 +20,7 @@ router.get('/:Title', asyncErrorHandler(getOneMovie));
 router.get('/directors/:Directors', asyncErrorHandler(getOneMovieByDirectors));
 router.get('/:Id', asyncErrorHandler(getOneMovieById));
 router.post('/', validator(moviesSchema), asyncErrorHandler(createOneMovie));
-router.put('/:Title', asyncErrorHandler(updateOneMovie));
+router.put('/:Title', validator(moviesSchema), asyncErrorHandler(updateOneMovie));
 router.put('/:Title/:Genres', asyncErrorHandler(updateGenreMovie));
 router.delete('/:Title', asyncErrorHandler(deleteOneMovie));
 

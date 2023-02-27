@@ -67,14 +67,14 @@ export const updateOneDirector = async (req, res, next) => {
 };
 
 export const deleteOneDirector = async (req, res, next) => {
-  const id = parseInt(req.params.id);
+  const id = req.params.id;
   const genre = Directors.find((genre) => genre.id === id);
   if (genre) {
-    const leftDirectors = Directors.filter((genre) => genre.id !== id);
+    const director = Directors.filter((genre) => genre.id !== id);
     res.status(201).json({
       success: true,
       message: `genre with ${id} has been successfully deleted`,
-      data: leftDirectors,
+      data: director,
     });
   } else {
     next(new exceptionHandler(404, `There was with ${id} found`));

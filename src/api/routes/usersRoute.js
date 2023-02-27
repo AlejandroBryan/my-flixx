@@ -22,12 +22,12 @@ router.post('/register', validate(userCreateSchema), asyncErrorHandler(registerU
 
 router.get('/:Username', passport.authenticate('jwt', { session: false }), asyncErrorHandler(getOneUserByName));
 
-router.get('/:Id', asyncErrorHandler(getOneUserById));
+router.get('/:Id', passport.authenticate('jwt', { session: false }), asyncErrorHandler(getOneUserById));
 
 router.put(
   '/:Username',
-  validate(userCreateSchema),
   passport.authenticate('jwt', { session: false }),
+  validate(userCreateSchema),
   asyncErrorHandler(updateOneUser),
 );
 

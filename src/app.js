@@ -43,7 +43,7 @@ app.get('/', (req, res) => {
 });
 
 // invoking api routes
-app.use('/api/v1/movies', passport.authenticate('jwt', { session: false }), moviesRoute);
+app.use('/api/v1/movies', moviesRoute);
 app.use('/api/v1/users', usersRoute);
 app.use('/api/v1/genres', passport.authenticate('jwt', { session: false }), genresRoute);
 app.use('/api/v1/directors', passport.authenticate('jwt', { session: false }), directorsRoute);
