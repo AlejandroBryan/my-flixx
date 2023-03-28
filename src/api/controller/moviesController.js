@@ -3,6 +3,7 @@ import Movies from '../../models/moviesModel';
 import Genres from '../../models/genresModel';
 
 export const getAllMovies = async (req, res) => {
+  console.log(req.params.token);
   const movies = await Movies.find().populate({ path: 'Genres', select: 'Name' });
   res.status(200).json({
     count: movies.length,

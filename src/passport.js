@@ -19,8 +19,8 @@ passport.use(
       if (!user.validatePassword(password)) {
         return done(null, false, { message: 'Incorrect password.' });
       }
-
-      return done(null, user);
+      console.log(user);
+      done(null, user);
     });
   }),
 );

@@ -12,7 +12,7 @@ export const moviesSchema = [
   check('Title', 'Title is required').not().isEmpty().isString(),
   check('Description', 'Description is required').not().isEmpty().isString(),
   check('Genres', 'Should be a string of alphanumeric characters').isEmpty().isArray(), // change to alphanumeric later
-  check('Director', 'Director is required').isObject(),
+  check('Director', 'Director is required').not().isEmpty(),
   check('Actors', 'Action is required').isArray(),
   check('ImagePath', 'Should be a string').isString(),
   check('Featured', 'Should be a boolean').isBoolean(),

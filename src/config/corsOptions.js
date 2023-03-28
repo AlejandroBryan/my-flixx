@@ -1,4 +1,4 @@
-let allowedOrigins = ['http://localhost:1234', 'http://testsite.com'];
+let allowedOrigins = ['http://localhost:1234', 'https://myflixx.netlify.app'];
 export default {
   origin: (origin, callback) => {
     if (!origin) return callback(null, true);

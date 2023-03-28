@@ -20,7 +20,7 @@ router.get('/', passport.authenticate('jwt', { session: false }), asyncErrorHand
 
 router.post('/register', validate(userCreateSchema), asyncErrorHandler(registerUsers));
 
-router.get('/:Username', passport.authenticate('jwt', { session: false }), asyncErrorHandler(getOneUserByName));
+router.get('/:Username', asyncErrorHandler(getOneUserByName));
 
 router.get('/:Id', passport.authenticate('jwt', { session: false }), asyncErrorHandler(getOneUserById));
 
