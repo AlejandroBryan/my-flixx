@@ -82,7 +82,9 @@ export const getOneUserByName = async (req, res, next) => {
 };
 
 export const updateOneUser = async (req, res, next) => {
+  console.log('update', req.body);
   let userName = req.params.Username;
+  const favoritesMovies = await Users.findOne({ Username: userName }).FavoriteMovies;
   let hashedPassword = await Users.hashPassword(req.body.Password);
   const { Firstname, Lastname, Username, Email, Birthday } = req.body;
 
@@ -93,12 +95,14 @@ export const updateOneUser = async (req, res, next) => {
     Password: hashedPassword,
     Email: Email,
     Birthday: Birthday,
+    FavoriteMovies: favoritesMovies,
   };
 
   const filterUser = { Username: userName };
-  let user = await Users.findOneAndUpdate(filterUser, body, { new: true });
+  let user = await Users.findOneAndUpdate(filterUser, body, { new: true }).populate('FavoriteMovies');
 
   if (user) {
+    console.log(user);
     res.status(201).json({
       success: true,
       data: user,
