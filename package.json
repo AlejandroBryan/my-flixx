@@ -11,11 +11,14 @@
     "clean": "rm -rf ./dist",
     "start": "node dist",
     "app": "nodemon --exec babel-node ./src",
-    "build": "npm run clean && babel ./src --out-dir dist --copy-files",
+    "build": "npm run clean && babel ./src --out-dir dist --copy-files && npm run start_prod",
     "lint": "eslint -c .eslintrc --ext .js src",
     "fix": "eslint --fix --ext .js src/ ",
     "format": "prettier --config .prettierrc --write src/",
-    "dev": "concurrently \"npm run app\" "
+    "dev": "concurrently \"npm run app\" ",
+    "start_dev": "pm2 start ecosystem.config.js --env development",
+    "start_prod": "pm2 start ecosystem.config.js --env production"
+
   },
   "keywords": [
     "node",
