@@ -12,6 +12,9 @@ import {
   deleteOneUser,
   updateUserMovies,
   deleteUserMovies,
+  addMovieUserImage,
+  getMovieUserImageList,
+  getMovieUserImage,
 } from '../controller/usersController';
 
 const router = Router();
@@ -45,4 +48,21 @@ router.delete(
 
 router.delete('/:Username', passport.authenticate('jwt', { session: false }), asyncErrorHandler(deleteOneUser));
 
+router.get(
+  '/:movieId/userImages/:userId',
+  passport.authenticate('jwt', { session: false }),
+  asyncErrorHandler(getMovieUserImageList),
+);
+
+router.get(
+  '/userImages/:objectKey',
+  passport.authenticate('jwt', { session: false }),
+  asyncErrorHandler(getMovieUserImage),
+);
+
+router.post(
+  '/:movieId/userImages/:userId',
+  passport.authenticate('jwt', { session: false }),
+  asyncErrorHandler(addMovieUserImage),
+);
 export default router;

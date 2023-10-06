@@ -30,18 +30,21 @@
   "author": "Alejandro Bryan",
   "license": "MIT",
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.423.0",
     "bcrypt": "^5.1.0",
     "concurrently": "^7.6.0",
     "cors": "^2.8.5",
     "ejs": "^3.1.8",
     "ejs-mate": "^4.0.0",
     "express": "^4.18.2",
+    "express-fileupload": "^1.4.1",
     "express-validator": "^6.14.3",
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^6.8.4",
     "passport": "^0.6.0",
     "passport-jwt": "^4.0.1",
     "passport-local": "^1.0.0",
+    "sanitize-s3-objectkey": "^0.0.1",
     "uuid": "^9.0.0"
   },
   "devDependencies": {
@@ -55,7 +58,7 @@
     "eslint-config-plugin": "^1.0.11",
     "eslint-config-prettier": "^8.5.0",
     "morgan": "^1.10.0",
-    "nodemon": "^2.0.20",
+    "nodemon": "^3.0.1",
     "prettier": "^2.8.1"
   }
 }

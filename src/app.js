@@ -5,7 +5,7 @@ import ejs from 'ejs';
 import ejsMate from 'ejs-mate';
 import cors from 'cors';
 import passport from 'passport';
-
+import fileUpload from 'express-fileupload';
 import './passport';
 import auth from './auth';
 import faviconHandler from './utils/utilities/faviconHandler';
@@ -29,6 +29,12 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan('common'));
+app.use(
+  fileUpload({
+    useTempFiles: true,
+    tempFileDir: '/tmp/',
+  }),
+);
 app.use(faviconHandler);
 app.use(express.static('./public'));
 app.engine('ejs', ejsMate);
@@ -52,7 +58,7 @@ app.use('/api/v1/directors', passport.authenticate('jwt', { session: false }), d
 //app.use('/', docuRoute);
 
 app.all('*', (req, res, next) => {
-  next(new exceptionHandler(404, `The url ${req.originalUrl} could't be not found on this server`));
+  next(new exceptionHandler(404, `The url ${req} could't be not found on this server`));
 });
 
 app.use(appErrorHandler);
