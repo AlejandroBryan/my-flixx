@@ -6,6 +6,7 @@ let allowedOrigins = [
   'http://my-flixx-images-bucket.s3.eu-central-1.amazonaws.com',
 ];
 export default {
+  credentials: true,
   origin: (origin, callback) => {
     if (!origin) return callback(null, true);
     if (allowedOrigins.indexOf(origin) === -1) {
@@ -15,8 +16,4 @@ export default {
     }
     return callback(null, true);
   },
-
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-  credentials: true,
 };
