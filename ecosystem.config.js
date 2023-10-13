@@ -1,8 +1,8 @@
 module.exports = {
   apps: [
     {
-      name: 'src/index.js',
-      script: 'index.js',
+      name: 'my-flixx',
+      script: './dist/index.js',
       instances: 1,
       max_memory_restart: '300M',
 

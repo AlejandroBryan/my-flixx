@@ -2,7 +2,7 @@ import sanitize from 'sanitize-s3-objectkey';
 import fs from 'fs';
 import exceptionHandler from '../../utils/exceptions/exceptionHandler';
 import Users from '../../models/usersModel';
-import { getMovieUserImageLists, addMovieUserImages, getMovieUserImages } from '../../config/s3-config';
+import { UserImageLists, addUserImages, UserImages } from '../../config/s3-config';
 
 export const getAllUsers = async (req, res) => {
   const users = await Users.find({})
@@ -165,45 +165,30 @@ export const deleteOneUser = async (req, res, next) => {
     next(new exceptionHandler(404, `There was not user with name ${Username} found`));
   }
 };
-export const getMovieUserImageList = async (req, res, next) => {
-  const inputValue = req.params;
 
-  if (inputValue) {
-    const response = await getMovieUserImageLists(inputValue);
+export const UserImageList = async (req, res, next) => {
+  const files = await UserImageLists(process.env.DEST_NAME, 'resized-images/');
+  if (files) {
     res.status(200).json({
       success: true,
       message: 'Object list fetched successfully',
-      data: response,
+      files,
     });
   } else {
     next(new exceptionHandler(500, `Input data could not be found`));
   }
 };
 
-export const getMovieUserImage = async (req, res, next) => {
-  const { objectKey } = req.params;
-  const fileName = objectKey;
-
-  const response = await getMovieUserImages(objectKey);
-  if (response) {
-    const stream = response.Body;
-    fs.writeFileSync(`/tmp/${fileName}`, Buffer.concat(await stream.toArray()));
-    res.status(200).sendFile(`/tmp/${fileName}`);
-  } else {
-    next(new exceptionHandler(500, `Error occurred during fetching file`));
-  }
-};
-
-export const addMovieUserImage = async (req, res, next) => {
-  const { movieId, userId } = req.params;
+export const addUserImage = async (req, res, next) => {
+  const { userId } = req.params;
   const file = req.files.file;
-  const name = `file_${userId}_${file.name}`;
+  const name = `file-${userId}-${file.name}`;
   const fileName = sanitize(name);
   const fileContent = fs.readFileSync(file.tempFilePath);
 
   if (file) {
-    console.log(addMovieUserImages);
-    const response = await addMovieUserImages(fileContent, fileName);
+    console.log(addUserImages);
+    const response = await addUserImages(fileContent, fileName);
     res.status(201).json({
       success: true,
       message: 'Object uploaded successfully',

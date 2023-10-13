@@ -27,7 +27,7 @@ connect_db();
 // invoking middleware
 app.use(cors(corsOptions));
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true, limit: '15mb' }));
 app.use(morgan('common'));
 app.use(
   fileUpload({
