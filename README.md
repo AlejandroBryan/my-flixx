@@ -2,21 +2,21 @@
 # Movie-Api
 
 ## Description 
-In this Repository i will implement my learned skill on the intro to server side programming at [Carrerfoundry](https://careerfoundry.com). It consist of building an API "Application Programming Interface" where the client side is able to insert, read, edit and delete data according to its assigned role.
+In this Repository, I will implement my learned skill on the intro to server-side programming at [Carrerfoundry](https://careerfoundry.com). It consists of building an API "Application Programming Interface" where the client side is able to insert, read, edit, and delete data according to its assigned role.
 
 ## Getting Started
 
 ### Dependencies
-make sure to have already installed the followings programs on your computer Nodejs up version +14 and NPM. 
+Could you make sure to have installed the following programs on your computer: Nodejs up version +14 and NPM? 
 
 ### Executing program
 
 ```css
 1- clone the application
-git clone https://github.com/AlejandroBryan/movie-api.git
+git clone https://github.com/AlejandroBryan/my-flixx.git
 
 
-2- install all dependencies and devdependencies.
+2- install all dependencies and devDependencies.
 
 npm install 
 
@@ -24,16 +24,16 @@ npm install
 
 npm run dev
 
-the server will start running on port http://localhost:5000
+The server will start running on port http://localhost:5000
 
 npm run production
 
-this command will create the `\dist` file which our production ready code.
+This command will create the `\dist` file which is our production-ready code.
 
 
 
 ```
-**in order to keep code well organized and avoid bugs run sequently**
+**In order to keep code well organized and avoid bugs running sequentially**
 ```
 npm run lint 
 npm run format
