@@ -3,7 +3,7 @@ let allowedOrigins = [
   'https://myflixx.netlify.app',
   'http://localhost:4200',
   'https://alejandrobryan.com',
-  'https://my-flixx-images-bucket.s3.eu-central-1.amazonaws.com',
+  'http://my-flixx-images-bucket.s3.eu-central-1.amazonaws.com',
 ];
 export default {
   origin: (origin, callback) => {
