@@ -1,0 +1,147 @@
+<% layout('layouts/boilerplate')%>
+
+<div class="container mb-5">
+  <h1 class="my-5">MY-FLIX Api Documentation</h1>
+
+  <p>One important things to keep in mind is that you should specify /api/v1/</p>
+  <% collections.forEach((item) => { %>
+  <h2><%= item.Collection %></h2>
+  <p><%= item.Description %></p>
+
+  <div class="accordion my-3" id="accordionPanelsStayOpenExample">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="<%=item.MethodGET.Name%>__<%= item.id %> ">
+
+            <button
+              class="accordion-button"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#<%=item.MethodGET.Name%>__<%= item.id %>"
+              aria-expanded="true"
+              aria-controls="<%=item.MethodGET.Name%>__<%= item.id %>"
+            >
+             List of <%= item.Collection %> <%= item.MethodGET.Url %> | <strong>[<%= item.MethodGET.Name %> ]</strong>
+            </button>
+
+          </h2>
+          <div
+            id="<%=item.MethodGET.Name%>__<%= item.id %>"
+            class="accordion-collapse collapse show"
+            aria-labelledby="<%=item.MethodGET.Name%>__<%= item.id %>"
+          >
+            <div class="accordion-body">
+              <strong><%= item.MethodGET.Url %> </strong> 
+              <%= item.MethodGET.Description %>.
+            </div>
+
+          </div>
+        </div>
+
+
+
+    <div class="accordion-item">
+      <h2 class="accordion-header" id=" <%=item.MethodPOST.Name%>__<%= item.id %> ">
+        <button
+          class="accordion-button collapsed"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#<%=item.MethodPOST.Name%>__<%= item.id %>"
+          aria-expanded="false"
+          aria-controls="<%=item.MethodPOST.Name%>__<%= item.id %>"
+        >
+          Get <%=item.Collection%> by its id /movies/id | <strong>[<%= item.MethodPOST.Name %> ]</strong>
+        </button>
+      </h2>
+      <div
+        id="<%=item.MethodPOST.Name%>__<%= item.id %>"
+        class="accordion-collapse collapse"
+        aria-labelledby="<%=item.MethodPOST.Name%>__<%= item.id %>"
+      >
+        <div class="accordion-body">
+          <strong><%= item.MethodPOST.Url %></strong>  <%= item.MethodPOST.Description %>: <code><%= item.MethodPOST.Url %> </code>.
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="<%=item.MethodPUT.Name%>__<%= item.id %>">
+        <button
+          class="accordion-button collapsed"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#<%=item.MethodPUT.Name%>__<%= item.id %>"
+          aria-expanded="false"
+          aria-controls="<%=item.MethodPUT.Name%>__<%= item.id %>"
+        >
+          Create a <%=item.Collection%> <%=item.MethodPUT.Url%> | <strong>[<%=item.MethodPUT.Name%>]</strong>
+        </button>
+      </h2>
+      <div
+        id="<%=item.MethodPUT.Name%>__<%= item.id %>"
+        class="accordion-collapse collapse"
+        aria-labelledby="<%=item.MethodPUT.Name%>__<%= item.id %>"
+      >
+        <div class="accordion-body">
+          <strong><%=item.MethodPUT.Url%></strong> <%=item.MethodPUT.Description%>.
+          <img class="img-thumbnail" src="exmple.png" alt="documentation example" />
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="panelsStayOpen-headingFour">
+        <button
+          class="accordion-button collapsed"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#panelsStayOpen-collapseFour"
+          aria-expanded="false"
+          aria-controls="panelsStayOpen-collapseFour"
+        >
+          Update movies by its id /movies/id | <strong>[PUT]</strong>
+        </button>
+      </h2>
+      <div
+        id="panelsStayOpen-collapseFour"
+        class="accordion-collapse collapse"
+        aria-labelledby="panelsStayOpen-headingFour"
+      >
+        <div class="accordion-body">
+          <strong>/movies/id</strong> It will allow you modified a specify movie through its id number. Please make sure
+          you are add number for example: <code>/movies/1</code>.
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="<%=item.MethodDELETE.Name%>__<%= item.id %>">
+        <button
+          class="accordion-button collapsed"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#<%=item.MethodDELETE.Name%>__<%= item.id %>"
+          aria-expanded="false"
+          aria-controls="<%=item.MethodDELETE.Name%>__<%= item.id %>"
+        >
+          Delete a <%= item.Collection %> by its id <%=item.MethodDELETE.Url%> | <strong>[<%=item.MethodDELETE.Name%>]</strong>
+        </button>
+      </h2>
+      <div
+        id="<%=item.MethodDELETE.Name%>__<%= item.id %>"
+        class="accordion-collapse collapse"
+        aria-labelledby="<%=item.MethodDELETE.Name%>__<%= item.id %>"
+      >
+        <div class="accordion-body">
+          <strong><%=item.MethodDELETE.Url%></strong> 
+          <%=item.MethodDELETE.Description%>: 
+          <code><%=item.MethodDELETE.Url%></code>.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <% })%>
+
+</div>
