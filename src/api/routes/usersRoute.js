@@ -15,6 +15,7 @@ import {
   addUserImage,
   UserImageList,
   UserImage,
+  getMovieUserImage,
 } from '../controller/usersController';
 
 const router = Router();
@@ -50,7 +51,11 @@ router.delete('/:Username', passport.authenticate('jwt', { session: false }), as
 
 router.get('/userImages/:userId', passport.authenticate('jwt', { session: false }), asyncErrorHandler(UserImageList));
 
-//router.get('/userImages/:objectKey', passport.authenticate('jwt', { session: false }), asyncErrorHandler(UserImage));
+/* router.get(
+  '/userImages/:objectKey',
+  passport.authenticate('jwt', { session: false }),
+  asyncErrorHandler(getMovieUserImage),
+); */
 
 router.post('/userImages/:userId', passport.authenticate('jwt', { session: false }), asyncErrorHandler(addUserImage));
 export default router;

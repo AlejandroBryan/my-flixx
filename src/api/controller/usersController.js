@@ -2,7 +2,7 @@ import sanitize from 'sanitize-s3-objectkey';
 import fs from 'fs';
 import exceptionHandler from '../../utils/exceptions/exceptionHandler';
 import Users from '../../models/usersModel';
-import { UserImageLists, addUserImages, UserImages } from '../../config/s3-config';
+import { UserImageLists, addUserImages, getMovieUserImages, UserImages } from '../../config/s3-config';
 
 export const getAllUsers = async (req, res) => {
   const users = await Users.find({})
@@ -167,8 +167,9 @@ export const deleteOneUser = async (req, res, next) => {
 };
 
 export const UserImageList = async (req, res, next) => {
-  const files = await UserImageLists(process.env.DEST_NAME, 'resized-images/');
-  if (files) {
+  const userId = req.params.userId;
+  const files = await UserImageLists(process.env.DEST_NAME, `resized-images/users/${userId}`);
+  if (userId) {
     res.status(200).json({
       success: true,
       message: 'Object list fetched successfully',
@@ -182,7 +183,7 @@ export const UserImageList = async (req, res, next) => {
 export const addUserImage = async (req, res, next) => {
   const { userId } = req.params;
   const file = req.files.file;
-  const name = `file-${userId}-${file.name}`;
+  const name = `users/${userId}/${file.name}`;
   const fileName = sanitize(name);
   const fileContent = fs.readFileSync(file.tempFilePath);
 
@@ -197,4 +198,19 @@ export const addUserImage = async (req, res, next) => {
   } else {
     next(new exceptionHandler(500, `Error occurred uploading file`));
   }
+};
+export const getMovieUserImage = async (req, res) => {
+  const { objectKey } = req.params;
+  const fileName = objectKey.split('/').pop();
+  console.log(objectKey, fileName);
+
+  const response = await getMovieUserImages(objectKey);
+  const stream = response.Body;
+  fs.writeFileSync(`/tmp/${fileName}`, Buffer.concat(await stream.toArray()));
+  res.status(200).sendFile(`/tmp/${fileName}`);
+
+  res.status(403).json({
+    success: false,
+    message: `Error occurred during fetching file. ${error}`,
+  });
 };
